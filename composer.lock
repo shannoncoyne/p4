@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43e7de4495ad70891e8222a91036e3e2",
+    "hash": "ef1b01583957fccc886950acdd3c8af3",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -104,6 +104,63 @@
                 "preload"
             ],
             "time": "2014-03-12 00:05:31"
+        },
+        {
+            "name": "components/bootstrap",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/bootstrap.git",
+                "reference": "9c6cfef04cb74587cd610f7dca8c4352d77bfc32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/bootstrap/zipball/9c6cfef04cb74587cd610f7dca8c4352d77bfc32",
+                "reference": "9c6cfef04cb74587cd610f7dca8c4352d77bfc32",
+                "shasum": ""
+            },
+            "require": {
+                "components/jquery": ">=1.9"
+            },
+            "suggest": {
+                "components/bootstrap-default": "Provide a theme for Bootstrap as components/bootstrap only provides the CSS as file assets"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "js/bootstrap.js"
+                    ],
+                    "files": [
+                        "js/bootstrap.min.js",
+                        "css/*.css",
+                        "fonts/*",
+                        "less/mixins/*.less",
+                        "less/*.less"
+                    ],
+                    "shim": {
+                        "deps": [
+                            "jquery"
+                        ]
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Twitter, Inc"
+                }
+            ],
+            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "homepage": "http://getbootstrap.com",
+            "keywords": [
+                "bootstrap",
+                "css"
+            ],
+            "time": "2014-07-02 12:39:50"
         },
         {
             "name": "components/font-awesome",
@@ -2081,57 +2138,6 @@
             "description": "Symfony Translation Component",
             "homepage": "http://symfony.com",
             "time": "2014-07-15 14:22:44"
-        },
-        {
-            "name": "twbs/bootstrap",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "6424acf69ae40a916db04b5c3235f1780f11b4be"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6424acf69ae40a916db04b5c3235f1780f11b4be",
-                "reference": "6424acf69ae40a916db04b5c3235f1780f11b4be",
-                "shasum": ""
-            },
-            "replace": {
-                "twitter/bootstrap": "self.version"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                }
-            ],
-            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-            "homepage": "http://getbootstrap.com",
-            "keywords": [
-                "JS",
-                "css",
-                "framework",
-                "front-end",
-                "less",
-                "mobile-first",
-                "responsive",
-                "web"
-            ],
-            "time": "2014-08-03 04:16:32"
         }
     ],
     "packages-dev": [
@@ -2144,8 +2150,7 @@
     "stability-flags": {
         "paste/pre": 20,
         "fzaninotto/faker": 20,
-        "components/font-awesome": 20,
-        "twbs/bootstrap": 20
+        "components/font-awesome": 20
     },
     "platform": [
 
