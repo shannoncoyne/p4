@@ -16,7 +16,14 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::resource('user', 'UserController');
+
+Route::get('/signup', 'UserController@getSignUp'); 
+Route::get('/login', 'UserController@getLogin' );
+Route::post('/signup', ['before' => 'csrf', 'uses' => 'UserController@postSignup'] );
+Route::post('/login', ['before' => 'csrf', 'uses' => 'UserController@postLogin'] );
+Route::get('/logout', ['before' => 'auth', 'uses' => 'UserController@getLogout'] );
+
+
 Route::resource('pomodoro', 'PomodoroController');
 
 

@@ -1,17 +1,17 @@
 @extends('layouts.master')
 
 @section('title')
-	Register
+	Login
 @stop
 
 @section('content')
-    <h1>Register</h1>
+    <h1>Login</h1>
 
 	@foreach($errors->all() as $message)
 		<div class="error">{{ $message }}</div>
 	@endforeach
 
-	{{ Form::open(array('url' => '/signup', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form')); }}
+	{{ Form::open(array('url' => '/login', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form')); }}
 	
 	<div class="form-group">
 		{{ Form::label('inputEmail', 'Email Address', array('class' => 'col-sm-2 control-label')); }}

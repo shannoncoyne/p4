@@ -9,7 +9,11 @@ class PomodoroController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		// list the pomodori
+		
+		$pomodori = Tomato::get();
+		
+		return View::make('pomodori_list')->with('pomodori', $pomodori);
 	}
 
 
@@ -20,7 +24,9 @@ class PomodoroController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// form to create pomodori
+		
+		return View::make('pomodoro_form');
 	}
 
 

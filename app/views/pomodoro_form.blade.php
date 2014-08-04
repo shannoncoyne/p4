@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-	Register
+	Create a New Pomodoro
 @stop
 
 @section('content')
-    <h1>Register</h1>
+    <h1>Create a New Pomodoro</h1>
 
 	@foreach($errors->all() as $message)
 		<div class="error">{{ $message }}</div>
@@ -42,4 +42,5 @@
 	</div>
 
 	{{ Form::close(); }}
+
 @stop
