@@ -18,21 +18,14 @@ return array(
 	|
 	*/
 
-	$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-	
-	$host = $url["host"];
-	$username = $url["user"];
-	$password = $url["pass"];
-	$database = substr($url["path"], 1);
-
 	'connections' => array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => $host,
-			'database'  => $database,
-			'username'  => $username,
-			'password'  => $password,
+			'host'      => 'ec2-54-83-14-68.compute-1.amazonaws.com',
+			'database'  => 'dcq898044v40uj',
+			'username'  => 'fpypsubnthpxnh',
+			'password'  => 'nkkkWuhWWmWylXPvMmReg5Dx6k',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
