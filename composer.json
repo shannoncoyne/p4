@@ -11,7 +11,8 @@
 		"components/jquery": "1.9.*",
 		"components/normalize.css": "2.*",
 		"components/font-awesome": "4.1.*@dev",
-		"components/bootstrap": "*"
+		"components/bootstrap": "*",
+		"codesleeve/asset-pipeline": "dev-master"
 	},
 	"post-update-cmd": [
 	    "php artisan debugbar:publish"

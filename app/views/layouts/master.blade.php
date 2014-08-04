@@ -3,16 +3,14 @@
 		<title>
 			Pomodoro - @yield('title', 'Default Title')
 		</title>
-		<script src="{{ public_path() }}/assets/jquery/jquery.min.js"></script>
-		<link href="{{ public_path() }}/assets/normalize-css/normalize.css" rel="stylesheet" type="text/css">
-		<link href="{{ public_path() }}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="{{ public_path() }}/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		
+		<?= stylesheet_link_tag() ?>
+		<?= javascript_include_tag() ?>
 		
 	</head>
     <body>
 		<div id="head">
 			Pomodoro
-			
 			<ul>
 				@if(Auth::check())
 					Currently logged in as {{ Auth::user()->email }}
@@ -33,7 +31,5 @@
         <div class="container">
             @yield('content')
         </div>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
