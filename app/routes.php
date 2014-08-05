@@ -23,8 +23,16 @@ Route::post('/signup', ['before' => 'csrf', 'uses' => 'UserController@postSignup
 Route::post('/login', ['before' => 'csrf', 'uses' => 'UserController@postLogin'] );
 Route::get('/logout', ['before' => 'auth', 'uses' => 'UserController@getLogout'] );
 
+Route::get('/test', function() {
+	$tomato = new Tomato;
+	$tomato->title = 'Assassins Creed';
+	$tomato->user_id = '1';
+	$tomato->save();
+	
+	echo "Success!";
+});
 
-Route::resource('pomodoro', 'PomodoroController');
+Route::resource('pomodori', 'PomodoroController');
 
 
 Route::get('/debug', function() {

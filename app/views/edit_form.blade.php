@@ -1,17 +1,20 @@
 @extends('layouts.master')
 
 @section('title')
-	Create a New Pomodoro
+	Edit Pomodoro
 @stop
 
 @section('content')
-    <h1>Create a New Pomodoro</h1>
+    <h1>Edit Pomodoro</h1>
 
 	@foreach($errors->all() as $message)
 		<div class="error">{{ $message }}</div>
 	@endforeach
+	
 
-	{{ Form::open(array('url' => '/pomodori', 'method' => 'POST', 'class' => 'form-horizontal', 'role' => 'form')); }}
+	
+	{{ Form::open(array('role' => 'form', 'class' => 'form-horizontal', 'method' => 'PUT', 'action' => array('PomodoroController@update', $pomodoro->id))) }}
+	
 	
 	<div class="form-group">
 		{{ Form::label('inputTitle', 'Title', array('class' => 'col-sm-2 control-label')); }}

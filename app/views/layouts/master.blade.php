@@ -13,7 +13,12 @@
 			Pomodoro
 			<ul>
 				@if(Auth::check())
-					Currently logged in as {{ Auth::user()->email }}
+					<div>Currently logged in as {{ Auth::user()->email }}</div>
+					
+					<ul>
+						<li><a href="/pomodori">My Pomodori</a></li>
+						<li><a href="/pomodori/create">Create New</a></li>
+					</ul>
 				@endif
 				@section('nav')
 					<li><a href="/signup">Sign Up</a></li>
