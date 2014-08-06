@@ -4,6 +4,7 @@ class PomodoroController extends \BaseController {
 
 	public function __construct()
     {
+		# only logged in users can work with pomodori (this resource)
         $this->beforeFilter('auth');
 
         $this->beforeFilter('csrf', array('on' => 'post'));
@@ -16,7 +17,7 @@ class PomodoroController extends \BaseController {
 	 */
 	public function index()
 	{
-		// list the pomodori
+		// list the user's pomodori
 		
 		$pomodori = Tomato::where('user_id', '=', Auth::id())->get();
 		
@@ -42,6 +43,7 @@ class PomodoroController extends \BaseController {
 	 */
 	public function store()
 	{
+		# validation
 		$rules = array(
 			'title'    => 'required|max:400',
 			'length'   => 'required',
@@ -55,7 +57,8 @@ class PomodoroController extends \BaseController {
 		{
 			return Redirect::to('/pomodori/create')->withInput()->withErrors($validator);
 		}
-				
+		
+		# validation passed, so create a new row with the input		
 		$pomodoro = new Tomato;
 		$pomodoro->user_id = Auth::id();
 		$pomodoro->title = Input::get('title');
@@ -65,10 +68,12 @@ class PomodoroController extends \BaseController {
 		
 		try
 		{
+			# success
 			$pomodoro->save();
 		}
 		catch (Exception $e)
 		{
+			# hiccup catch all
 			return Redirect::to('/pomodori/create')->withInput()->with('flash_message', 'Sorry! Something went wrong.');
 		}
 		
@@ -84,7 +89,11 @@ class PomodoroController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		# pomodoro with the given id (first() because there is only one I want)
+		$pomodoro = Tomato::where('id', '=', $id)->first();
+		
+		# pass pomodoro to the view
+		return View::make('pomodoro')->with('pomodoro', $pomodoro);
 	}
 
 
@@ -97,15 +106,17 @@ class PomodoroController extends \BaseController {
 	public function edit($id)
 	{
 		$auth_id = Auth::id();
+		# using first() because there is only one result
 		$pomodoro = Tomato::where('id', '=', $id)->first();
 		
-		# check user owns this pomodoro
 		if($pomodoro->user_id == $auth_id)
 		{
+			# user owns this pomodoro
 			return View::make('edit_form')->with('pomodoro', $pomodoro);
 		}
 		else
 		{
+			# user doesn't have permissions to see this pomodoro
 			return Redirect::to('/');
 		}
 	}
@@ -119,8 +130,19 @@ class PomodoroController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		# validation
+		$rules = array(
+			'title'    => 'required|max:400',
+		);
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails())
+		{
+			return Redirect::to('/pomodori/'.$id.'/edit')->withInput()->withErrors($validator);
+		}
 		
-		# From notes
+		# From notes (findOrFail with try/catch)
 		
 		try
 		{
@@ -131,6 +153,7 @@ class PomodoroController extends \BaseController {
 			return Redirect::to('/pomodori')->with('flash_message', 'Pomodoro not found.');
 		}
 
+		# found it, so update it with input
 		$pomodoro->title = Input::get('title');
 		$pomodoro->length = Input::get('length');
 		$pomodoro->break_duration = Input::get('break_duration');
@@ -149,7 +172,9 @@ class PomodoroController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+				
 		$auth_id = Auth::id();
+		# only one record in question, so first()
 		$pomodoro = Tomato::where('id', '=', $id)->first();
 		
 		# check user owns this pomodoro

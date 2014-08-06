@@ -1,25 +1,31 @@
 @extends('layouts.master')
 
 @section('title')
-	Edit Pomodoro
+	Edit Pomodoro - {{ $pomodoro->title }}
 @stop
 
 @section('content')
-    <h1>Edit Pomodoro</h1>
+    <h1>Edit Pomodoro <small>{{ $pomodoro->title }}</small></h1>
 
 	@foreach($errors->all() as $message)
 		<div class="error">{{ $message }}</div>
 	@endforeach
 	
-
+	{{ Form::model($pomodoro, array('method' => 'put', 'action' => ['PomodoroController@update', $pomodoro->id], 'class' => 'form-horizontal')) }}
 	
-	{{ Form::open(array('role' => 'form', 'class' => 'form-horizontal', 'method' => 'PUT', 'action' => array('PomodoroController@update', $pomodoro->id))) }}
+	
+<!--	{{ Form::open(array('role' => 'form', 'class' => 'form-horizontal', 'method' => 'PUT', 'action' => array('PomodoroController@update', $pomodoro->id))) }}
+
+array('role' => 'form', 'class' => 'form-horizontal'),
+
+
+['method' => 'put', 'action' => ['PomodoroController@update', $pomodoro->id]]-->
 	
 	
 	<div class="form-group">
 		{{ Form::label('inputTitle', 'Title', array('class' => 'col-sm-2 control-label')); }}
 		<div class="col-sm-10">
-			{{ Form::text('title','', array('class' => 'form-control', 'id' => 'inputTitle', 'placeholder' => 'e.g., Homework')); }}
+			{{ Form::text('title', $pomodoro->title, array('class' => 'form-control', 'id' => 'inputTitle', 'placeholder' => 'e.g., Homework')); }}
 		</div>
 	</div>
 
@@ -71,7 +77,9 @@
 
 	<div class="form-group">
     	<div class="col-sm-offset-2 col-sm-10">
-			{{ Form::submit('Submit', array('class' => 'btn btn-default')); }}
+			{{ Form::submit('Save Changes', array('class' => 'btn btn-primary')); }}
+			
+			{{ Form::button('Cancel', array('class' => 'btn btn-default', 'on.click', '/pomodori')); }}
 		</div>
 	</div>
 
