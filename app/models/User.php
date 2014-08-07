@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Elegant implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
@@ -22,5 +22,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->hasMany('Tomato');
     }
+
+	protected $rules = array(
+		'email'    => 'required|email|unique:users,email',
+		'password' => 'required|min:6'
+	    );
+	
+	public function authorize($user_email, $user_password, $remember)
+	{		
+		$auth = Auth::attempt(array(
+			'email' => $user_email,
+			'password' => $user_password,
+		), $remember);
+		
+		return $auth;
+	}
 
 }

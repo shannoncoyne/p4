@@ -2,10 +2,9 @@
 
 class UserController extends \BaseController {
 
-
-	
 	public function __construct()
 	{
+		# from notes
 		$this->beforeFilter('guest', array('only' => array('getLogin','getSignup')));	
 	}
 
@@ -16,47 +15,39 @@ class UserController extends \BaseController {
 
 	public function postSignUp()
 	{
-		$rules = array(
-			'email'    => 'required|email|unique:users,email',
-			'password' => 'required|min:6'	
-		);
-
-		$validator = Validator::make(Input::all(), $rules);
-
-		if($validator->fails())
-		{
-			return Redirect::to('/signup')->withInput()->withErrors($validator);
-		}
-		
-		/**
-		  * From Lecture Notes
-		  */
+		$input = Input::all();
 		
 		$user = new User;
-		$user->email = Input::get('email');
-		$user->password = Hash::make(Input::get('password'));
-		
-		try
+
+		# validator lives in the model Elegant (courtesy Codebright)
+		if($user->validate($input))
 		{
-			$user->save();
+			$user->email = Input::get('email');
+			$user->password = Hash::make(Input::get('password'));
+			try
+			{
+				$user->save();
+			}
+			catch (Exception $e)
+			{
+				return Redirect::to('/signup')->withInput();
+			}
 		}
-		catch (Exception $e)
+		else
 		{
-			return Redirect::to('/signup')->withInput();
+			return Redirect::to('/signup')->withInput()->withErrors($user->errors());
 		}
-		
-		
+
 		/**
 		 * From PHPAcademy! https://www.youtube.com/watch?v=hYUf6u_txhk
 		 * Purpose of the Auth::attempt array is to include the Remember Me? boolean
 		 * for the session cookie
+		 * The authorize function is located in the User model and also used in @postLogin
 		 */
 		$remember = (Input::has('remember')) ? true : false;
 		
-		$auth = Auth::attempt(array(
-			'email' => Input::get('email'),
-			'password' => Input::get('password'),
-		), $remember);
+		# Boolean
+		$auth = $user->authorize($user->email, $user->password, $remember);
 		
 		if ($auth)
 		{
@@ -64,9 +55,8 @@ class UserController extends \BaseController {
 		}
 		else
 		{
-			return Redirect::route('login')->with('flash_message', 'Login failed! Please try again.');
+			return Redirect::to('/login')->with('flash_message', 'Login failed! Please try again.');
 		}
-
 	}
 
 	public function getLogin()
@@ -74,14 +64,14 @@ class UserController extends \BaseController {
 		return View::make('login');
 	}
 
-	public function postLogin() {
-
+	public function postLogin()
+	{
 		$remember = (Input::has('remember')) ? true : false;
-
-		$auth = Auth::attempt(array(
-			'email' => Input::get('email'),
-			'password' => Input::get('password'),
-		), $remember);
+		
+		$user = new User();
+		
+		# Boolean
+		$auth = $user->authorize(Input::get('email'), Input::get('password'), $remember);
 		
 		if($auth)	
 		{

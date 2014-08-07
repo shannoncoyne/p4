@@ -7,7 +7,7 @@
 @section('content')
     <h1>My Pomodori <small><a href="/pomodori/create">create new</a></h1>
 
-	@if($pomodori)
+	@if(count($pomodori) > 0)
 		<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
@@ -32,6 +32,8 @@
 			</tbody>
 		</table>
 		</div>
+	@elseif(count($pomodori) == 0)
+		<div class="text-center"><h3>You have no pomodori! <a href="/pomodori/create">Create one?</a></h3></div>
 	@endif
-
+	
 @stop

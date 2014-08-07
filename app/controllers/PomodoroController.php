@@ -44,31 +44,25 @@ class PomodoroController extends \BaseController {
 	public function store()
 	{
 		# validation
-		$rules = array(
-			'title'    => 'required|max:400',
-			'length'   => 'required',
-			'break_duration' => 'required',
-			'set_max' => 'required'
-		);
-
-		$validator = Validator::make(Input::all(), $rules);
-
-		if($validator->fails())
-		{
-			return Redirect::to('/pomodori/create')->withInput()->withErrors($validator);
-		}
+		$input = Input::all();
 		
-		# validation passed, so create a new row with the input		
-		$pomodoro = new Tomato;
-		$pomodoro->user_id = Auth::id();
-		$pomodoro->title = Input::get('title');
-		$pomodoro->length = Input::get('length');
-		$pomodoro->break_duration = Input::get('break_duration');
-		$pomodoro->set_max = Input::get('set_max');
+		$pomodoro = new Tomato();
+
+		if($pomodoro->validate($input))
+		{
+			$pomodoro->user_id = Auth::id();
+			$pomodoro->title = Input::get('title');
+			$pomodoro->length = Input::get('length');
+			$pomodoro->break_duration = Input::get('break_duration');
+			$pomodoro->set_max = Input::get('set_max');
+		}
+		else
+		{
+			return Redirect::to('/pomodori/create')->withInput()->withErrors($pomodoro->errors());
+		}
 		
 		try
 		{
-			# success
 			$pomodoro->save();
 		}
 		catch (Exception $e)
@@ -130,35 +124,32 @@ class PomodoroController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		# validation
-		$rules = array(
-			'title'    => 'required|max:400',
-		);
-
-		$validator = Validator::make(Input::all(), $rules);
-
-		if($validator->fails())
-		{
-			return Redirect::to('/pomodori/'.$id.'/edit')->withInput()->withErrors($validator);
-		}
+		$input = Input::all();
 		
-		# From notes (findOrFail with try/catch)
-		
-		try
-		{
-			$pomodoro = Tomato::findOrFail($id);
-		}
-		catch(Exception $e)
-		{
-			return Redirect::to('/pomodori')->with('flash_message', 'Pomodoro not found.');
-		}
+		$pomodoro = new Tomato();
 
-		# found it, so update it with input
-		$pomodoro->title = Input::get('title');
-		$pomodoro->length = Input::get('length');
-		$pomodoro->break_duration = Input::get('break_duration');
-		$pomodoro->set_max = Input::get('set_max');
-		$pomodoro->save();
+		if($pomodoro->validate($input))
+		{
+			# From notes (findOrFail with try/catch)
+			try
+			{
+				$pomodoro = Tomato::findOrFail($id);
+			}
+			catch(Exception $e)
+			{
+				return Redirect::to('/pomodori')->with('flash_message', 'Pomodoro not found.');
+			}
+			
+			$pomodoro->title = Input::get('title');
+			$pomodoro->length = Input::get('length');
+			$pomodoro->break_duration = Input::get('break_duration');
+			$pomodoro->set_max = Input::get('set_max');
+			$pomodoro->save();
+		}
+		else
+		{
+			return Redirect::to('/pomodori/'.$id.'/edit')->withInput()->withErrors($pomodoro->errors());
+		}
 
 		return Redirect::action('PomodoroController@index')->with('flash_message', 'Pomodoro successfully updated.');
 	}
