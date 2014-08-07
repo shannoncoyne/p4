@@ -22,7 +22,7 @@
 			<tbody>
 		@foreach($pomodori as $pomodoro)
 				<tr>
-					<td><a href="/pomodori/{{ $pomodoro->id }}">{{ $pomodoro->title }}</a> <small><a href="/pomodori/{{ $pomodoro->id }}/edit">edit</a></small></td>
+					<td><a href="/pomodori/{{ $pomodoro->id }}">{{ $pomodoro->title }}</a> <small><a href="/pomodori/{{ $pomodoro->id }}/edit" class="small-link">edit</a></small></td>
 					<td>{{ $pomodoro->length / 60 }} minutes</td>
 					<td>{{ $pomodoro->break_duration / 60 }} minutes</td>
 					<td>{{ $pomodoro->set_max }}</td>
