@@ -47,15 +47,17 @@ class UserController extends \BaseController {
 		$remember = (Input::has('remember')) ? true : false;
 		
 		# Boolean
-		$auth = $user->authorize($user->email, $user->password, $remember);
+		$auth = $user->authorize(Input::get('email'), Input::get('password'), $remember);
 		
-		if ($auth)
+		if($auth)	
 		{
-			return Redirect::to('/');
+			return Redirect::to('/')->with('flash_message', 'You are now logged in.');
 		}
 		else
 		{
-			return Redirect::to('/login')->with('flash_message', 'Login failed! Please try again.');
+			return Redirect::to('/login')
+				->with('flash_message', 'Log in failed!')
+				->withInput();
 		}
 	}
 
@@ -75,7 +77,7 @@ class UserController extends \BaseController {
 		
 		if($auth)	
 		{
-			return Redirect::intended('/')->with('flash_message', 'Welcome Back!');
+			return Redirect::to('/')->with('flash_message', 'Welcome Back!');
 		}
 		else
 		{

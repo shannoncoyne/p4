@@ -6,11 +6,6 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"paste/pre": "dev-master",
-		"fzaninotto/faker": "1.5.*@dev",
-		"components/jquery": "1.9.*",
-		"components/normalize.css": "2.*",
-		"components/font-awesome": "4.1.*@dev",
-		"components/bootstrap": "*",
 		"codesleeve/asset-pipeline": "dev-master"
 	},
 	"post-update-cmd": [

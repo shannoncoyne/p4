@@ -93,7 +93,6 @@
 						<td>Length</td>
 						<td>Break Duration</td>
 						<td>Sets</td>
-						<td>Number Completed</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -104,7 +103,6 @@
 						<td>{{ $pomodoro->length / 60 }} minutes</td>
 						<td>{{ $pomodoro->break_duration / 60 }} minutes</td>
 						<td>{{ $pomodoro->set_max }}</td>
-						<td>{{ $pomodoro->number_completed }}</td>
 					</tr>
 				</tbody>
 			</table>

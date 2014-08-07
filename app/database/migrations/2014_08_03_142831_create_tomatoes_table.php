@@ -19,7 +19,6 @@ class CreateTomatoesTable extends Migration {
 			$t->integer('length')->unsigned();
 			$t->integer('break_duration')->unsigned();
 			$t->integer('set_max')->unsigned();
-			$t->integer('number_completed')->unsigned();
 			$t->timestamps();
 			
 			$t->foreign('user_id')->references('id')->on('users');
