@@ -1,0 +1,27 @@
+.flash_message {
+	
+}
+
+.red {
+	color: #c73737;
+}
+
+.green {
+	color: green;
+}
+
+a {
+	color: #c73737;
+}
+
+	a:hover {
+		color: red;
+		text-decoration: none;
+	}
+
+a.small-link {
+	color: #f66161;
+}
+	a:hover.small-link {
+		color: #000;
+	}
