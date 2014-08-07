@@ -5,7 +5,6 @@
 		</title>
 		
 		<?= stylesheet_link_tag() ?>
-		<?= javascript_include_tag() ?>
 		
 	</head>
     <body>
@@ -36,5 +35,6 @@
         <div class="container">
             @yield('content')
         </div>
+		<?= javascript_include_tag() ?>
     </body>
 </html>
