@@ -20,8 +20,12 @@ a {
 	}
 
 a.small-link {
-	color: #f66161;
+	color: green;
 }
 	a:hover.small-link {
 		color: #000;
 	}
+
+.flash_message {
+	margin-top: 10px;
+}

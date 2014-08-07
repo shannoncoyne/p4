@@ -42,4 +42,6 @@
 	</div>
 
 	{{ Form::close(); }}
+	
+	<div class="text-center h3 red"><a href="/signup">Need to register?</a>
 @stop

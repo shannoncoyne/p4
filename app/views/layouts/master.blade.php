@@ -30,7 +30,9 @@
 			
 			<div class="container">
 				@if(Session::get('flash_message'))
-					<div class="flash_message">{{ Session::get('flash_message') }}</div>
+					<div class="flash_message text-center green">
+						<strong>{{ Session::get('flash_message') }}</strong>
+					</div>
 				@endif
 				<div>
 		            @yield('content')

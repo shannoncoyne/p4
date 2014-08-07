@@ -26,7 +26,9 @@ I also think this project is a nice start, but I can envision this as so much mo
 * [Dayle Rees](http://daylerees.com/trick-validation-within-models) for validation in models
 * [PHPAcademy](https://www.youtube.com/watch?v=hYUf6u_txhk) for the 'remember me' login functionality in Laravel
 
-### Plug-ins and packages
+### Packages and libraries
 
 * [CodeSleeve/asset-pipeline](https://github.com/CodeSleeve/asset-pipeline) - great package for managing all my CSS and JS files.
 * [jQuery Runner](https://github.com/jylauril/jquery-runner) - runner/stopwatch plug-in for jQuery that I used for the sprint implementation.
+* [Twitter Bootstrap](http://www.getbootstrap.com)
+* [jQuery](http://jquery.com/)

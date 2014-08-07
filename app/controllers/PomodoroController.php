@@ -83,11 +83,27 @@ class PomodoroController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		# pomodoro with the given id (first() because there is only one I want)
-		$pomodoro = Tomato::where('id', '=', $id)->first();
+		$auth_id = Auth::id();
 		
-		# pass pomodoro to the view
-		return View::make('pomodoro')->with('pomodoro', $pomodoro);
+		try
+		{
+			$pomodoro = Tomato::findOrFail($id);
+		}
+		catch(Exception $e)
+		{
+			return Redirect::to('/pomodori')->with('flash_message', 'Pomodoro not found.');
+		}
+		
+		if($pomodoro->user_id == $auth_id)
+		{
+			# user owns this pomodoro
+			return View::make('pomodoro')->with('pomodoro', $pomodoro);
+		}
+		else
+		{
+			# user doesn't have permissions to see this pomodoro
+			return Redirect::to('/');
+		}
 	}
 
 
@@ -100,9 +116,16 @@ class PomodoroController extends \BaseController {
 	public function edit($id)
 	{
 		$auth_id = Auth::id();
-		# using first() because there is only one result
-		$pomodoro = Tomato::where('id', '=', $id)->first();
-		
+				
+		try
+		{
+			$pomodoro = Tomato::findOrFail($id);
+		}
+		catch(Exception $e)
+		{
+			return Redirect::to('/pomodori')->with('flash_message', 'Pomodoro not found.');
+		}
+			
 		if($pomodoro->user_id == $auth_id)
 		{
 			# user owns this pomodoro
