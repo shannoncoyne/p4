@@ -22,10 +22,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'ec2-54-83-14-68.compute-1.amazonaws.com',
-			'database'  => 'dcq898044v40uj',
-			'username'  => 'fpypsubnthpxnh',
-			'password'  => 'nkkkWuhWWmWylXPvMmReg5Dx6k',
+			'host'      => '127.9.234.130',
+			'database'  => 'p4',
+			'username'  => 'adminbihBFcw',
+			'password'  => 'WnjXH9DKZGGR',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
