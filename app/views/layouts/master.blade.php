@@ -12,10 +12,11 @@
 			<div class="header">
 	        <ul class="nav nav-pills pull-right">
 				@section('nav')
+						<li><a href="/">Home</a></li>
 					@if(Auth::check())
-							<li><a href="/pomodori">My Pomodori</a></li>
-							<li><a href="/pomodori/create">Create New</a></li>
-							<li><a href="/logout">Logout</a></li>
+						<li><a href="/pomodori">My Pomodori</a></li>
+						<li><a href="/pomodori/create">Create New</a></li>
+						<li><a href="/logout">Logout</a></li>
 					@endif
 					@if(!Auth::check())
 						<li><a href="/signup">Sign Up</a></li>
