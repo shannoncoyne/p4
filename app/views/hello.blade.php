@@ -20,6 +20,6 @@
 	</div>
 	
 	<div class="h1 text-center">
-		<a href="/pomodoroi/create">get started</a>
+		<a href="/pomodori/create">get started</a>
 	</div>
 @stop
