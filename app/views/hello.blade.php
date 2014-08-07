@@ -1,9 +1,19 @@
 @extends('layouts.master')
 
 @section('title')
-	My custom title
+	Home
 @stop
 
 @section('content')
-    <p>This is my body content.</p>
+    <h3>The Pomodoro Technique</h3>
+
+	<ol>
+		<li>Decide on the task to be done</li>
+		<li>Set the pomodoro timer to n minutes (traditionally 25)</li>
+		<li>Work on the task until the timer rings; record with an x</li>
+		<li>Take a short break (3–5 minutes)</li>
+		<li>After four pomodori, take a longer break (15–30 minutes)</li>
+	</ol>
+	
+	<a href="http://en.wikipedia.org/wiki/Pomodoro_Technique">http://en.wikipedia.org/wiki/Pomodoro_Technique</a>
 @stop
