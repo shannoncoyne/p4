@@ -22,7 +22,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'sqlite',
-      'database'  => '../../app/database/production.sqlite',
+      'database'  => __DIR__.'../../app/database/production.sqlite',
       'prefix'    => '',
 	),
 
