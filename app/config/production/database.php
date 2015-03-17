@@ -21,16 +21,9 @@ return array(
 	'connections' => array(
 
 		'mysql' => array(
-			'driver'    => 'mysql',
-			'host'      => '127.9.234.130',
-			'database'  => 'p4',
-			'username'  => 'adminbihBFcw',
-			'password'  => 'WnjXH9DKZGGR',
-			'charset'   => 'utf8',
-			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-		),
-
+			'driver'    => 'sqlite',
+      'database'  => '../../app/database/production.sqlite',
+      'prefix'    => '',
 	),
 
 );
