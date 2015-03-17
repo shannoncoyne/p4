@@ -24,6 +24,7 @@ return array(
 			'driver'    => 'sqlite',
       'database'  => __DIR__.'../../app/database/production.sqlite',
       'prefix'    => '',
-	),
+    ),  
+  ),
 
 );
