@@ -1,6 +1,6 @@
 # p4
 
-http://p4-shayc.rhcloud.com/
+http://p4.chocopai.net
 
 ## About this project
 
