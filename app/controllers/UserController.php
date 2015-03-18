@@ -16,15 +16,15 @@ class UserController extends \BaseController {
 	public function postSignUp()
 	{
 		$input = Input::all();
-		
-		$user = new User;
+    $user = new User;
 
 		# validator lives in the model Elegant (courtesy Codebright)
 		if($user->validate($input))
-		{
+    {
 			$user->email = Input::get('email');
-			$user->password = Hash::make(Input::get('password'));
-			try
+      $user->password = Hash::make(Input::get('password')); 
+      $user->remember_token = (Input::has('remember')) ? true : false;
+      try
 			{
 				$user->save();
 			}
@@ -35,7 +35,7 @@ class UserController extends \BaseController {
 		}
 		else
 		{
-			return Redirect::to('/signup')->withInput()->withErrors($user->errors());
+      return Redirect::to('/signup')->withInput()->withErrors($user->errors());
 		}
 
 		/**
